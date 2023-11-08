@@ -1,11 +1,28 @@
-<div class="container">
-<div class="row">
-    <% @cat.each do |nombre, imagen, id| %>
-    <div class="col-md-6 mb-4">
-        <h4 class="text-white"><%= link_to nombre, detalles_path(id_trago: id) %></h4>
-        <img src="<%= imagen %>" class="img-thumbnail"  alt=""  style="max-width: 100%;">
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Paradise Cocktail Bar</title>
+<link rel="stylesheet" href="application.css"> <!-- Enlaza tu archivo de estilos CSS externo aquí -->
+</head>
+<body>
+<nav class="navbar navbar-dark bg-primary">
+    <div class="container">
+        <a class="navbar-brand text-center" href="#">Paradise Cocktail Bar</a>
     </div>
-    <% end %>
+</nav>
+
+<div class="container">
+    <div class="row">
+        <% @cat.each do |nombre, imagen, id| %>
+        <div class="col-md-6 mb-4">
+            <h4 class="text-white"><%= link_to nombre, detalles_path(id_trago: id) %></h4>
+            <img src="<%= imagen %>" class="img-thumbnail"  alt=""  style="max-width: 100%;">
+        </div>
+        <% end %>
+    </div>
 </div>
-</div>
+</body>
+</html>
 

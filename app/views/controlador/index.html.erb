@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Paradise Cocktail Bar</title>
-<link rel="stylesheet" href=""> <!-- Enlaza tu archivo de estilos CSS externo aquí -->
+<link rel="stylesheet" href="application.css"> <!-- Enlaza tu archivo de estilos CSS externo aquí -->
 </head>
 <body>
 <nav class="navbar navbar-dark bg-primary">
@@ -23,5 +23,57 @@
         </ul>
     </div>
 </div>
+
+<!-- Agrega el formulario de búsqueda -->
+<div class="container text-center">
+    <h2>Buscar Cóctel</h2>
+    <form id="search-form" class="mb-3">
+        <input type="text" id="coctel-name" placeholder="Nombre del Cóctel">
+        <button type="submit" class="btn btn-primary">Buscar</button>
+    </form>
+    <div id="coctel-results">
+        <!-- Aquí se mostrarán los resultados de la búsqueda -->
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('search-form');
+    const coctelName = document.getElementById('coctel-name');
+    const coctelResults = document.getElementById('coctel-results');
+
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const searchTerm = coctelName.value;
+
+        if (searchTerm) {
+            // Realiza una solicitud a la API
+            fetch(`www.thecocktaildb.com/api/json/v1/1 /search.php?s=margarita${searchTerm}`)
+                .then(response => response.json())
+                .then(data => {
+                    coctelResults.innerHTML = '';
+
+                    if (data.drinks) {
+                        data.drinks.forEach(coctel => {
+                            const coctelName = coctel.strDrink;
+                            const coctelInstructions = coctel.strInstructions;
+
+                            const coctelCard = document.createElement('div');
+                            coctelCard.innerHTML = `<h3>${coctelName}</h3><p>${coctelInstructions}</p>`;
+
+                            coctelResults.appendChild(coctelCard);
+                        });
+                    } else {
+                        coctelResults.innerHTML = '<h4> No se encontraron resultados.<h4>';
+                    }
+                })
+                .catch(error => {
+                    coctelResults.innerHTML = '<h4>Ocurrió un error al buscar el cóctel.<h4>';
+                });
+        }
+    });
+});
+</script>
 </body>
 </html>

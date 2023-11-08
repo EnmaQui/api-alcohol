@@ -13,6 +13,16 @@ h1 {
     color: #e7ecf1; /* Cambia el color del texto a azul (#007bff) o al color que prefieras */
 }
 
+  /* Cambia el color del texto de los encabezados h1 */
+h2 {
+    color: #e7ecf1; /* Cambia el color del texto a azul (#007bff) o al color que prefieras */
+}
+
+  /* Cambia el color del texto de los encabezados h1 */
+h4 {
+    color: #e7ecf1; /* Cambia el color del texto a azul (#007bff) o al color que prefieras */
+}
+
 
 a
 {
